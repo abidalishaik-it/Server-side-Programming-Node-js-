@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function bodyload(){
+            fetch("http/:127.0.0.1:8080/products").then(res=>res.json)
+            .then(products=>{
+                products.map(product=>{
+                    var tr=document.createElement("tr");
+                    var tdName=document.createElement("td");
+                    var tdPrice=document.createElement("td");
+                    var tdCat=document.createElement("td");
+
+                    tdName.innerHTML=product.Name;
+                    tdPrice.innerHTML=product.Price;
+                    tdCat.innerHTML=product.Category;
+
+                    tr.appendChild(tdName);
+                    tr.appendChild(tdPrice);
+                    tr.appendChild(tdCat);
+
+                    document.querySelector("tbody").appendChild(tr);
+                })
+            })
+        }
+    </script>
+</head>
+<body onload="bodyload()">
+    <table border="1" width="100%">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Price</th>
+                <th>Category</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+
+    
+</body>
+</html>
